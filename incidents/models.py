@@ -37,7 +37,6 @@ class Incident(models.Model):
     received_on = models.DateTimeField()
     details = models.TextField()
     closed_on = models.DateTimeField(null=True, blank=True)
-    action_id = models.ForeignKey('Action')
 
     def __str__(self):
             return self.get_incident_category_display()
