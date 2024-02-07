@@ -42,7 +42,7 @@ class Incident(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-            return self.get_incident_category_display()
+            return f"{self.get_incident_category_display()} - {self.location}"
     
     
 class Action(models.Model):
@@ -60,5 +60,5 @@ class Action(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-        return self.get_action_code_display()
+        return f"{self.get_action_code_display()} - {self.incident}"
     
