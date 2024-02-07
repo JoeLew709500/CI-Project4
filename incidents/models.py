@@ -38,6 +38,9 @@ class Incident(models.Model):
     details = models.TextField()
     closed_on = models.DateTimeField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['-created_on']
+
     def __str__(self):
             return self.get_incident_category_display()
     
@@ -52,6 +55,9 @@ class Action(models.Model):
     details = models.TextField()
     completed = models.BooleanField(default=False)
     completed_on = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.get_action_code_display()
