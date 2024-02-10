@@ -9,4 +9,4 @@ class IncidentForm(forms.ModelForm):
 class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
-        fields = ['incident', 'action_code', 'details', 'completed', 'completed_on']
+        fields = ['incident', 'action_code', 'details', 'completed_on']

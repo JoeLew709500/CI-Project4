@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .forms import IncidentForm
+from .forms import IncidentForm, ActionForm
 
 class TestIncidentForm(TestCase):
     def test_incident_form(self):
