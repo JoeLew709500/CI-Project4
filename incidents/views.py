@@ -56,6 +56,37 @@ def incident_detail(request, incident_id):
             {
                 "incident": Incident.objects.get(id=incident_id),
                 "incident_form": incident_form,
+                "save_button_type": "Update",
             },
         )  
 
+def incident_new(request):
+    """
+
+    View to create a new incident
+
+    ## Templates: incidents/incident_new.html
+
+    """
+
+    if request.method == "POST":
+        incident_form = IncidentForm(data=request.POST)
+        if incident_form.is_valid():
+            incident = incident_form.save(commit=False)
+            incident.created_by = request.user
+            incident.save()
+            messages.add_message(request, messages.SUCCESS, 'Incident created')
+            return HttpResponseRedirect(reverse('incident_detail', args=(incident.id,)))
+        else:
+            messages.add_message(request, messages.ERROR, 'Error creating incident')
+    else:
+        incident_form = IncidentForm()
+
+    return render(
+        request,
+        'incidents/incident.html',
+        {
+            "incident_form": incident_form,
+            "save_button_type": "Create Incident",
+        },
+    )
