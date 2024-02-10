@@ -14,7 +14,7 @@
     <tbody>
   {% if incident_list %}
       {% for incident in incident_list %}
-            <tr role="button" data-bs-toggle="tooltip" title="Details: {{ incident.details }}" onclick="window.location= {% url 'incident_detail' incident.id %}">
+            <tr role="button" data-bs-toggle="tooltip" title="Details: {{ incident.details }}" onclick="window.location= '{% url 'incident_detail' incident.id %}'">
             <td>{{ incident.id }}</td>
             <td>{{ incident.get_incident_category_display }}</td>
             <td>{{ incident.location}}</td>
