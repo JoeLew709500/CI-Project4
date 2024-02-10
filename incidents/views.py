@@ -90,3 +90,20 @@ def incident_new(request):
             "save_button_type": "Create Incident",
         },
     )
+
+def actions(request, incident_id):
+    """
+
+    View to display a list of actions
+
+    ## Templates: incidents/actions.html
+
+    """
+
+    return render(
+        request,
+        'incidents/actions.html',
+        {
+            "action_list": Action.objects.filter(incident=incident_id),
+        },
+    )

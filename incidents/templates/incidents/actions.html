@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Actions</h1>
+  <button type="button" class="btn btn-primary" onclick="window.location='#'">Add action</button>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Action Code</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% if action_list %}
+      {% for action in action_list %}
+            <tr role="button" data-bs-toggle="tooltip" title="Details: {{ action.details }}" onclick="window.location= #">
+            <td>{{ action.id }}</td>
+            <td>{{ action.get_action_code_display }}</td>
+            <td>{{ action.completed_on}}</td>
+            </tr>        
+      {% endfor %}
+    </tbody>  
+    </table>
+  {% endif %}
+{% endblock %}
