@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Actions</h1>
-  <button type="button" class="btn btn-primary" onclick="window.location='#'">Add action</button>
+  <button type="button" class="btn btn-primary" onclick="window.location='{% url 'action_new' incident_id %}'">Add action</button>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -14,7 +14,7 @@
     <tbody>
   {% if action_list %}
       {% for action in action_list %}
-            <tr role="button" data-bs-toggle="tooltip" title="Details: {{ action.details }}" onclick="window.location= #">
+            <tr role="button" data-bs-toggle="tooltip" title="Details: {{ action.details }}" onclick="window.location='{% url 'action_detail' incident_id action.id %}'">
             <td>{{ action.id }}</td>
             <td>{{ action.get_action_code_display }}</td>
             <td>{{ action.completed_on}}</td>

@@ -5,8 +5,12 @@
   <h1>Incident {{ incident.id }}</h1>
 
   <form method="post">
-  {{ action_form | crispy}}
+  {{ incident_form | crispy}}
   {% csrf_token %}
   <button type="submit">{{ save_button_type }}</button>
   </form>
+  {% if save_button_type == 'Update' %}
+  <button type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
+  {% endif %}
+
 {% endblock %}

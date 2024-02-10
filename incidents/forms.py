@@ -10,3 +10,8 @@ class ActionForm(forms.ModelForm):
     class Meta:
         model = Action
         fields = ['incident', 'action_code', 'details', 'completed_on']
+
+class ActionFormNew(forms.ModelForm):
+    class Meta:
+        model = Action
+        fields = ['action_code', 'details', 'completed_on']
