@@ -1,0 +1,1 @@
+web: gunicrom artic_case_manager.wsgi
