@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Incidents List</h1>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% if incident_list %}
+      {% for incident in incident_list %}
+      <tr data-bs-toggle="tooltip" title="Details: {{ incident.details }}">
+        <td>{{ incident.id }}</td>
+        <td>{{ incident.get_incident_category_display }}</td>
+        <td>{{ incident.location}}</td>
+      </tr>          
+      {% endfor %}
+    </tbody>  
+    </table>
+  {% endif %}
+{% endblock %}
