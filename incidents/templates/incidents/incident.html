@@ -2,11 +2,11 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <h1>Incident - {{ incident.id }}</h1>
+  <h1>Incident {{ incident.id }}</h1>
 
   <form method="post">
   {{ incident_form | crispy}}
   {% csrf_token %}
-  <button type="submit">Update</button>
+  <button type="submit">{{ save_button_type }}</button>
   </form>
 {% endblock %}
