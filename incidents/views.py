@@ -2,7 +2,7 @@ from django.shortcuts import render,reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Incident, Action
-from .forms import IncidentForm
+from .forms import IncidentForm, ActionForm
 
 # Create your views here.
 
@@ -107,3 +107,39 @@ def actions(request, incident_id):
             "action_list": Action.objects.filter(incident=incident_id),
         },
     )
+
+def action_detail(request,incident_id, action_id):
+    """
+
+    View to display the details of an individual action
+
+    ## Templates: incidents/action_detail.html
+
+    """
+    if request.method == "POST":
+        action = get_object_or_404(Action, pk=action_id)
+        action_form = ActionForm(data=request.POST, instance=action)
+        if action_form.is_valid():
+            action_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Action updated')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error updating action')
+
+        return HttpResponseRedirect(reverse('action_detail', args=(incident_id,action_id,)))
+    
+    else:
+
+        action_form = ActionForm(
+            instance=Action.objects.get(id=action_id)
+        )
+
+        return render(
+            request,
+            'incidents/action_detail.html',
+            {
+                "action": Action.objects.get(id=action_id),
+                "action_form": action_form,
+                "save_button_type": "Update",
+            },
+        )
+
