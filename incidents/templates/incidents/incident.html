@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-{% if incident.created_by == user %}
+{% if incident.created_by == user or save_button_type == 'Create Incident' %}
   <h1>Incident {{ incident.id }}</h1>
 
   <form method="post">
