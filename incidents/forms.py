@@ -1,5 +1,5 @@
-from .models import Incident, Action
-from django import forms    
+from .models import Incident, Action, INCIDENT_CATEGORY_CHOICES
+from django import forms
 
 class IncidentForm(forms.ModelForm):
     class Meta:
@@ -28,3 +28,6 @@ class ActionFormNew(forms.ModelForm):
         widgets = {
             'completed_on': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
         }
+
+class IncidentFormSearch(forms.Form):
+    incident_category = forms.ChoiceField(choices=INCIDENT_CATEGORY_CHOICES)

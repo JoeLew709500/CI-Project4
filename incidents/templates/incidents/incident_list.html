@@ -4,6 +4,16 @@
 {% if user.is_authenticated %}
   <h1>Incidents List</h1>
   <button type="button" class="btn btn-success" onclick="window.location='{% url 'incident_new' %}'">Create Incident</button>
+  <button type="button" class="btn btn-primary" onclick="window.location='{% url 'incident_list' %}'">Refresh Incidents</button>
+  <form method="post">
+    {% csrf_token %}
+    <select name="incident_category">
+      {% for value, name in incident_form.fields.incident_category.choices %}
+      <option value="{{ value }}" {% if incident_form.instance.incident_category == value %}selected{% endif %}>{{ name }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -30,3 +40,5 @@
   <h1> You need to be logged in to access this page </h1>
 {% endif %}
 {% endblock %}
+
+
