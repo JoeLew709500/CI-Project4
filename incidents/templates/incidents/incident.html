@@ -7,10 +7,11 @@
   <form method="post">
   {{ incident_form | crispy}}
   {% csrf_token %}
-  <button type="submit">{{ save_button_type }}</button>
+  <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
   </form>
   {% if save_button_type == 'Update' %}
-  <button type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
+  <button class="btn btn-primary" type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
+  <button class="btn btn-danger" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
   {% endif %}
 
 {% endblock %}
