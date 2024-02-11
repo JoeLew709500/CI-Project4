@@ -105,7 +105,6 @@ def incident_delete(request, incident_id):
     messages.add_message(request, messages.SUCCESS, 'Incident deleted')
     return HttpResponseRedirect(reverse('incident_list'))
 
-
 def actions(request, incident_id):
     """
 
@@ -156,6 +155,7 @@ def action_detail(request,incident_id, action_id):
                 "action": Action.objects.get(id=action_id),
                 "action_form": action_form,
                 "save_button_type": "Update",
+                "incident_id": incident_id,
             },
         )
 
@@ -190,3 +190,14 @@ def action_new(request, incident_id):
             "save_button_type": "Create Action",
         },)
 
+def action_delete(request, incident_id, action_id):
+    """
+
+    View to delete an action
+
+    """
+
+    action = get_object_or_404(Action, pk=action_id)
+    action.delete()
+    messages.add_message(request, messages.SUCCESS, 'Action deleted')
+    return HttpResponseRedirect(reverse('actions', args=(incident_id,)))

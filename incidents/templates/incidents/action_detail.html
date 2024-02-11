@@ -7,6 +7,9 @@
   <form method="post">
   {{ action_form | crispy}}
   {% csrf_token %}
-  <button type="submit">{{ save_button_type }}</button>
+  <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
   </form>
+  {% if save_button_type == 'Update' %}
+  <button class="btn btn-danger" onclick="window.location='{% url 'action_delete' incident_id action.id %}'">Delete</button>
+  {% endif %}
 {% endblock %}
