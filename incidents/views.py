@@ -91,6 +91,21 @@ def incident_new(request):
         },
     )
 
+def incident_delete(request, incident_id):  
+    """
+
+    View to delete an incident
+
+    ## Templates: incidents/incident_delete.html
+
+    """
+
+    incident = get_object_or_404(Incident, pk=incident_id)
+    incident.delete()
+    messages.add_message(request, messages.SUCCESS, 'Incident deleted')
+    return HttpResponseRedirect(reverse('incident_list'))
+
+
 def actions(request, incident_id):
     """
 
