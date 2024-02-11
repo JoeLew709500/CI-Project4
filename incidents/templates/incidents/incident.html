@@ -1,20 +1,25 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block content %}
-{% if incident.created_by == user or save_button_type == 'Create Incident' %}
-  <h1>Incident {{ incident.id }}</h1>
 
-  <form method="post">
-  {{ incident_form | crispy}}
-  {% csrf_token %}
-  <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
-  </form>
-  {% if save_button_type == 'Update' %}
-  <button class="btn btn-primary" type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
-  <button class="btn btn-danger" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
+{% block content %}
+{% if user.is_authenticated %}
+  {% if incident.created_by == user or save_button_type == 'Create Incident' %}
+    <h1>Incident {{ incident.id }}</h1>
+
+    <form method="post">
+    {{ incident_form | crispy}}
+    {% csrf_token %}
+    <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
+    </form>
+      {% if save_button_type == 'Update' %}
+      <button class="btn btn-primary" type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
+      <button class="btn btn-danger" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
+      {% endif %}
+  {% else %}
+  <h1> You don't have access to this record </h1>
   {% endif %}
 {% else %}
-<h1> You don't have access to this record </h1>
+  <h1> You need to be logged in to access this page </h1>
 {% endif %}
 {% endblock %}

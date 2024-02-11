@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% if user.is_authenticated %}
 {% if action.created_by == user or save_button_type == 'Create Action' %}
   <h1>Action</h1>
 
@@ -15,5 +16,8 @@
   {% endif %}
 {% else %}
   <h1> You don't have access to this record </h1>
+{% endif %}
+{% else %}
+  <h1> You need to be logged in to access this page </h1>
 {% endif %}
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if user.is_authenticated %}
+
 {% if incident.created_by == user %}
   <h1>Actions</h1>
   <button type="button" class="btn btn-primary" onclick="window.location='{% url 'action_new' incident_id %}'">Add action</button>
@@ -26,5 +28,8 @@
   {% endif %}
 {% else %}
   <h1> You don't have access to this record </h1>
+{% endif %}
+{% else %}
+  <h1> You need to be logged in to access this page </h1>
 {% endif %}
 {% endblock %}
