@@ -134,6 +134,7 @@ def actions(request, incident_id):
         {
             "action_list": Action.objects.filter(incident=incident_id),
             "incident_id": incident_id,
+            "incident": Incident.objects.get(id=incident_id),
         },
     )
 
