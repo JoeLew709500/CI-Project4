@@ -1,1 +1,1 @@
-web: gunicrom artic_case_manager.wsgi
+web: gunicorn artic_case_manager.wsgi
