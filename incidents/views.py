@@ -2,7 +2,7 @@ from django.shortcuts import render,reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Incident, Action
-from .forms import IncidentForm, ActionForm, ActionFormNew
+from .forms import IncidentForm, ActionForm, ActionFormNew, IncidentFormSearch
 
 # Create your views here.
 
@@ -28,12 +28,24 @@ def incident_list(request):
     ## Templates: incidents/incident_list.html
     
     """
+    if request.method == "POST":
+        incident_form = IncidentFormSearch(data=request.POST)
+        if incident_form.is_valid():
+            selected_category = incident_form.cleaned_data.get('incident_category')
+            incidents = Incident.objects.filter(incident_category=selected_category)
+        else:
+            print(incident_form.errors)  # print form errors
+            incidents = Incident.objects.all()
+    else:
+        incident_form = IncidentFormSearch()
+        incidents = Incident.objects.all()
 
     return render(
         request,
         'incidents/incident_list.html',
         {
-            "incident_list": Incident.objects.all(),
+            "incident_list": incidents,
+            "incident_form": incident_form,
         },
     )
 
