@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+{% if incident.created_by == user %}
   <h1>Incident {{ incident.id }}</h1>
 
   <form method="post">
@@ -13,5 +14,7 @@
   <button class="btn btn-primary" type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
   <button class="btn btn-danger" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
   {% endif %}
-
+{% else %}
+<h1> You don't have access to this record </h1>
+{% endif %}
 {% endblock %}
