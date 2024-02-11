@@ -6,6 +6,20 @@ from .forms import IncidentForm, ActionForm, ActionFormNew
 
 # Create your views here.
 
+def index(request):
+    """
+
+    View to display the index page
+
+    ## Templates: incidents/index.html
+
+    """
+
+    return render(
+        request,
+        'incidents/index.html',
+    )
+
 def incident_list(request):
     """
 
