@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-{% if action.created_by == user%}
+{% if action.created_by == user or save_button_type == 'Create Action' %}
   <h1>Action</h1>
 
   <form method="post">
