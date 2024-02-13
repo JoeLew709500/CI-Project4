@@ -1,4 +1,4 @@
-from .models import Incident, Action, INCIDENT_CATEGORY_CHOICES
+from .models import Incident, Action, INCIDENT_CATEGORY_CHOICES, ActionPhoto
 from django import forms
 
 class IncidentForm(forms.ModelForm):
@@ -31,3 +31,8 @@ class ActionFormNew(forms.ModelForm):
 
 class IncidentFormSearch(forms.Form):
     incident_category = forms.ChoiceField(choices=INCIDENT_CATEGORY_CHOICES)
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = ActionPhoto
+        fields = ['photo']

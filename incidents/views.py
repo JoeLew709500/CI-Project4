@@ -1,8 +1,10 @@
 from django.shortcuts import render,reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Incident, Action
-from .forms import IncidentForm, ActionForm, ActionFormNew, IncidentFormSearch
+from .models import Incident, Action, ActionPhoto
+from .forms import IncidentForm, ActionForm, ActionFormNew, IncidentFormSearch, PhotoForm
+from cloudinary import api as cloudinaryAPI
+from cloudinary import exceptions as cloudinaryexceptions
 
 # Create your views here.
 
@@ -228,3 +230,45 @@ def action_delete(request, incident_id, action_id):
     action.delete()
     messages.add_message(request, messages.SUCCESS, 'Action deleted')
     return HttpResponseRedirect(reverse('actions', args=(incident_id,)))
+
+def photos(request, incident_id, action_id):
+    """
+
+    View to display a list of photos
+
+    ## Templates: incidents/photos.html
+
+    """
+
+    # Tests if cloudinary is available
+    try:
+        cloudinaryAPI.ping()
+        messages.add_message(request, messages.SUCCESS, 'Cloudinary the cloud service is available')
+    except cloudinaryexceptions.Error:
+        messages.add_message(request, messages.ERROR, 'Cloudinary the cloud service is not available')
+
+    action_user = Action.objects.get(id=action_id).created_by
+
+    if request.method == "POST":
+        photo_form = PhotoForm(request.POST, request.FILES)
+        if photo_form.is_valid():
+            photo = photo_form.save(commit=False)
+            photo.action_id = Action.objects.get(id=action_id)
+            photo.save()
+            messages.add_message(request, messages.SUCCESS, 'Photo added')
+        else:
+            messages.add_message(request, messages.ERROR, 'Error adding photo')
+    else:
+        photo_form = PhotoForm()
+
+    return render(
+        request,
+        'incidents/action_photos.html',
+        {
+            "photo_list": ActionPhoto.objects.filter(action_id=action_id),
+            "incident_id": incident_id,
+            "action_id": action_id,
+            "action_user": action_user,
+            "photo_form": photo_form,
+        },
+    )
