@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary_storage
 import os, dj_database_url, sys
 if os.path.isfile('env.py'):
     import env
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'incidents',
     'crispy_forms',
     'crispy_bootstrap5',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 SITE_ID = 1

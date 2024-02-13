@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from cloudinary.models import CloudinaryField
 
 INCIDENT_CATEGORY_CHOICES = (
     (1, 'Fly Tipping'),
@@ -61,4 +61,7 @@ class Action(models.Model):
 
     def __str__(self):
         return f"{self.get_action_code_display()} - {self.incident}"
-    
+
+class ActionPhoto(models.Model):
+    photo = CloudinaryField('image')
+    action_id = models.ForeignKey(Action, on_delete=models.CASCADE, related_name='photos')
