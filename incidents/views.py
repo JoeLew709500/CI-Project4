@@ -272,3 +272,15 @@ def photos(request, incident_id, action_id):
             "photo_form": photo_form,
         },
     )
+
+def photo_delete(request, incident_id, action_id, photo_id):
+    """
+
+    View to delete a photo
+
+    """
+
+    photo = get_object_or_404(ActionPhoto, pk=photo_id)
+    photo.delete()
+    messages.add_message(request, messages.SUCCESS, 'Photo deleted')
+    return HttpResponseRedirect(reverse('photos', args=(incident_id, action_id,)))

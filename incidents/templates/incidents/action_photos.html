@@ -32,7 +32,7 @@
                 <div class="card">
                     <img src="{{ action_photo.photo.url }}" class="card-img-top" alt="">
                     <div class="card-body">
-                    <a href="#" class="btn btn-danger">Delete</a>
+                    <button onclick="window.location='{% url 'photo_delete' incident_id action_id action_photo.id %}'" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
                 </div>
