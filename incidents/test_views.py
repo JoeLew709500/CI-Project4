@@ -52,3 +52,8 @@ class TestIncidentViews(TestCase):
         response = self.client.get(reverse('action_new', args=[self.incident.id]))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'incidents/action_detail.html')
+
+    def test_photos_view(self):
+        response = self.client.get(reverse('photos', args=[self.incident.id, self.action.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'incidents/action_photos.html')
