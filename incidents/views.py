@@ -34,9 +34,14 @@ def incident_list(request):
         incident_form = IncidentFormSearch(data=request.POST)
         if incident_form.is_valid():
             selected_category = incident_form.cleaned_data.get('incident_category')
-            incidents = Incident.objects.filter(incident_category=selected_category)
+            selected_date = incident_form.cleaned_data.get('date')
+            if selected_category != '0':
+                incidents = Incident.objects.filter(incident_category=selected_category)
+            else:
+                incidents = Incident.objects.all()
+            if selected_date:
+                incidents = incidents.filter(received_on__date=selected_date)
         else:
-            print(incident_form.errors)  # print form errors
             incidents = Incident.objects.all()
     else:
         incident_form = IncidentFormSearch()

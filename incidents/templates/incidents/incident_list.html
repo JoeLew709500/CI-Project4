@@ -7,11 +7,7 @@
   <button type="button" class="btn btn-primary" onclick="window.location='{% url 'incident_list' %}'">Refresh Incidents</button>
   <form method="post">
     {% csrf_token %}
-    <select name="incident_category">
-      {% for value, name in incident_form.fields.incident_category.choices %}
-      <option value="{{ value }}" {% if incident_form.instance.incident_category == value %}selected{% endif %}>{{ name }}</option>
-      {% endfor %}
-    </select>
+    {{ incident_form }}
     <button type="submit" class="btn btn-primary">Search</button>
   </form>
   <table class="table table-striped table-hover">
