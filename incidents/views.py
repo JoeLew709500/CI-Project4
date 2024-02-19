@@ -80,7 +80,7 @@ def incident_detail(request, incident_id):
 
     # display/edit individual incidents
         incident_form = IncidentForm(
-            instance=Incident.objects.get(id=incident_id)
+            instance=get_object_or_404(Incident, pk=incident_id)
         )
         
         return render(
@@ -179,7 +179,7 @@ def action_detail(request,incident_id, action_id):
     else:
 
         action_form = ActionForm(
-            instance=Action.objects.get(id=action_id)
+            instance=get_object_or_404(Action, pk=action_id)
         )
 
         return render(
