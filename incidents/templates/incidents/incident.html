@@ -5,8 +5,8 @@
 {% block content %}
 {% if user.is_authenticated %}
   {% if incident.created_by == user or save_button_type == 'Create Incident' %}
-    <h1>Incident {{ incident.id }}</h1>
-
+  <button type="button" class="float-end btn btn-secondary" onclick="window.location='{% url 'incident_list' %}'">Back to Incidents</button>
+  <h1>Incident {{ incident.id }}</h1>
     <form method="post">
     {{ incident_form | crispy}}
     {% csrf_token %}
