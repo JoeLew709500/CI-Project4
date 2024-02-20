@@ -1,4 +1,4 @@
-from django.shortcuts import render,reverse, get_object_or_404
+from django.shortcuts import render,reverse, get_object_or_404, get_list_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from .models import Incident, Action, ActionPhoto
@@ -151,7 +151,7 @@ def actions(request, incident_id):
         request,
         'incidents/actions.html',
         {
-            "action_list": Action.objects.filter(incident=incident_id),
+            "action_list": get_list_or_404(Action, incident_id=incident_id),
             "incident_id": incident_id,
             "incident": Incident.objects.get(id=incident_id),
         },
@@ -245,6 +245,10 @@ def photos(request, incident_id, action_id):
     ## Templates: incidents/photos.html
 
     """
+    # check if action exists and error if not
+
+    get_object_or_404(Action, pk=action_id)
+
 
     # Tests if cloudinary is available
     try:
