@@ -220,6 +220,7 @@ def action_new(request, incident_id):
         request,
         'incidents/action_detail.html',
         {
+            "incident_id": incident_id,
             "action_form": action_form,
             "save_button_type": "Create Action",
         },)
