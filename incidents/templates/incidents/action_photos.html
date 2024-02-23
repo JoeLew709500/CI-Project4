@@ -23,7 +23,7 @@
         </div>
     </div>
     {% if photo_list %}
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-12">
         <div class="card">
             <div class="card-body">
@@ -31,7 +31,7 @@
             <div class="row">
                 {% for action_photo in photo_list %}
                 <div class="col-md-4">
-                <div class="card">
+                <div class="card mt-2">
                     <img src="{{ action_photo.photo.url }}" class="card-img-top" alt="">
                     <div class="card-body">
                     <button onclick="window.location='{% url 'photo_delete' incident_id action_id action_photo.id %}'" class="btn btn-danger">Delete</button>

@@ -12,12 +12,14 @@
     <form method="post">
     {{ incident_form | crispy}}
     {% csrf_token %}
-    <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
-    {% if save_button_type == 'Update' %}
-      <button class="btn btn-primary" data-bs-toggle="tooltip" title="Click here to view and add all the actions in relation to this incident ie, phone call made, notice served etc..." type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
-      <button class="btn btn-danger" type="button" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
-      {% endif %}
-    </form>
+    <div class="combined-buttons">
+      <button class="btn btn-success" type="submit">{{ save_button_type }}</button>
+      {% if save_button_type == 'Update' %}
+        <button class="btn btn-primary" data-bs-toggle="tooltip" title="Click here to view and add all the actions in relation to this incident ie, phone call made, notice served etc..." type="button" onclick="window.location='{% url 'actions' incident.id %}'">Actions</button>
+        <button class="btn btn-danger" type="button" onclick="window.location='{% url 'incident_delete' incident.id %}'">Delete</button>
+        {% endif %}
+    </div>
+      </form>
   {% else %}
   <h1> You don't have access to this record </h1>
   {% endif %}
