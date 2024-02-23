@@ -4,8 +4,10 @@
 {% block content %}
 {% if user.is_authenticated %}
 {% if action.created_by == user or save_button_type == 'Create Action' %}
-  <h1>Action</h1>
-  <button class="btn btn-secondary float-end" type="button" onclick="window.location='{% url 'actions' incident_id %}'">Back to Actions</button>
+  <div class="container-sub-heading">
+    <h1>Action</h1>
+    <button class="btn btn-secondary float-end" type="button" onclick="window.location='{% url 'actions' incident_id %}'">Back to Actions</button>
+  </div>
   <form method="post">
   {{ action_form | crispy}}
   {% csrf_token %}

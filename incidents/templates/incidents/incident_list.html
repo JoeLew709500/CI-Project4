@@ -5,7 +5,7 @@
   <h1>Incidents List</h1>
   <button type="button" class="btn btn-success" onclick="window.location='{% url 'incident_new' %}'">Create Incident</button>
   <button type="button" class="btn btn-primary" onclick="window.location='{% url 'incident_list' %}'">Refresh Incidents</button>
-  <form method="post">
+  <form method="post" id="search-form">
     {% csrf_token %}
     {{ incident_form }}
     <button type="submit" class="btn btn-primary">Search</button>

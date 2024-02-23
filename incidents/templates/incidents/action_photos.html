@@ -4,8 +4,10 @@
 {% block content %}
 {% if user.is_authenticated %}
 {% if action_user == user %}
-<button class="btn btn-secondary float-end" type="button" onclick="window.location='{% url 'action_detail' incident_id action_id %}'">Back to Action Detail</button>
-  <h1>Action Photos</h1>
+    <div class="container-sub-heading">
+        <h1>Action Photos</h1>
+        <button class="btn btn-secondary float-end" type="button" onclick="window.location='{% url 'action_detail' incident_id action_id %}'">Back to Action Detail</button>
+    </div>
     <div class="row">
         <div class="col-md-12">
         <div class="card">
