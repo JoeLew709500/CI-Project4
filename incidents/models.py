@@ -29,6 +29,9 @@ ACTION_CODES = (
 
 # Create your models here.
 class Incident(models.Model):
+    """
+    Model to record incidents
+    """
     location = models.CharField(max_length=200)
     incident_category = models.IntegerField(choices=INCIDENT_CATEGORY_CHOICES)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -46,6 +49,9 @@ class Incident(models.Model):
     
     
 class Action(models.Model):
+    """
+    Model to record actions taken for an incident
+    """
     incident = models.ForeignKey(Incident,on_delete=models.CASCADE, 
                                 related_name='actions')
     created_on = models.DateTimeField(auto_now_add=True)
