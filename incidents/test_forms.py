@@ -4,6 +4,9 @@ from .forms import IncidentForm, ActionForm
 from .models import Incident
 
 class TestIncidentForm(TestCase):
+    """
+    Test Incident Form
+    """
     def test_incident_form(self):
         form = IncidentForm({
             'location': 'Test Location',
@@ -23,6 +26,9 @@ class TestIncidentForm(TestCase):
         self.assertEqual(form.errors['details'], ['This field is required.'])
 
 class TestActionForm(TestCase):
+    """
+    Test Action Form
+    """
     def setUp(self):
         self.user = User.objects.create_user(
             username='testuser',
