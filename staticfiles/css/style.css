@@ -1,0 +1,19 @@
+.container-sub-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.navbar-color-custom {
+    background-color: rgb(210, 210, 200) !important;
+}
+
+#search-form {
+    padding: 5px 5px 0 0;
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
