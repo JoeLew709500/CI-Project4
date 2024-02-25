@@ -147,11 +147,13 @@ def actions(request, incident_id):
 
     """
 
+    get_object_or_404(Incident, pk=incident_id)
+
     return render(
         request,
         'incidents/actions.html',
         {
-            "action_list": get_list_or_404(Action, incident_id=incident_id),
+            "action_list": Action.objects.filter(incident_id=incident_id),
             "incident_id": incident_id,
             "incident": Incident.objects.get(id=incident_id),
         },
