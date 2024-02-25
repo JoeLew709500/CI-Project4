@@ -17,6 +17,22 @@
     gap: 10px;
 }
 
+footer {
+    background-color: rgb(210, 210, 200);
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.social-nets i {
+    color: rgb(45, 45, 45);
+    font-size: 30px;
+    margin: 0 5px;
+}
+
  @media screen and (max-width: 991px){
     #search-form {
         padding: 5px 0 0 0;
