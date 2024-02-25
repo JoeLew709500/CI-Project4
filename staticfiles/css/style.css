@@ -33,6 +33,26 @@ footer {
     margin: 0 5px;
 }
 
+#hero-image {
+    margin-bottom: 10px;
+  }
+
+#flytip {
+    height: 500px;
+    float: left;
+    border-radius: 10px;
+    margin: 0 10px 10px 0;
+  }
+
+#intro-para {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    height: 400px;
+  }
+
  @media screen and (max-width: 991px){
     #search-form {
         padding: 5px 0 0 0;
@@ -52,6 +72,13 @@ footer {
         justify-content: space-between;
         align-items: center;
         gap: 10px;
+    }
+
+    #flytip {
+        float: none;
+        margin: auto;
+        width: 100%;
+        height:auto;
     }
     
  }
