@@ -1,10 +1,10 @@
-from django.shortcuts import render,reverse, get_object_or_404, get_list_or_404
+from django.shortcuts import render,reverse, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from .models import Incident, Action, ActionPhoto
-from .forms import IncidentForm, ActionForm, ActionFormNew, IncidentFormSearch, PhotoForm
 from cloudinary import api as cloudinaryAPI
 from cloudinary import exceptions as cloudinaryexceptions
+from .models import Incident, Action, ActionPhoto
+from .forms import IncidentForm, ActionForm, ActionFormNew, IncidentFormSearch, PhotoForm
 
 # Create your views here.
 
@@ -75,14 +75,13 @@ def incident_detail(request, incident_id):
             messages.add_message(request, messages.ERROR, 'Error updating incident')
 
         return HttpResponseRedirect(reverse('incident_detail', args=(incident_id,)))
-    
+
     else:
 
     # display/edit individual incidents
         incident_form = IncidentForm(
             instance=get_object_or_404(Incident, pk=incident_id)
         )
-        
         return render(
             request,
             'incidents/incident.html',
@@ -91,8 +90,7 @@ def incident_detail(request, incident_id):
                 "incident_form": incident_form,
                 "save_button_type": "Update",
             },
-        )  
-
+        )
 def incident_new(request):
     """
 
@@ -124,7 +122,7 @@ def incident_new(request):
         },
     )
 
-def incident_delete(request, incident_id):  
+def incident_delete(request, incident_id):
     """
 
     View to delete an incident
@@ -177,7 +175,7 @@ def action_detail(request,incident_id, action_id):
             messages.add_message(request, messages.ERROR, 'Error updating action')
 
         return HttpResponseRedirect(reverse('action_detail', args=(incident_id,action_id,)))
-    
+
     else:
 
         action_form = ActionForm(
@@ -255,9 +253,11 @@ def photos(request, incident_id, action_id):
     # Tests if cloudinary is available
     try:
         cloudinaryAPI.ping()
-        messages.add_message(request, messages.SUCCESS, 'Cloudinary the cloud service is available')
+        messages.add_message(request, messages.SUCCESS,
+                             'Cloudinary the cloud service is available')
     except cloudinaryexceptions.Error:
-        messages.add_message(request, messages.ERROR, 'Cloudinary the cloud service is not available')
+        messages.add_message(request, messages.ERROR,
+                             'Cloudinary the cloud service is not available')
 
     action_user = Action.objects.get(id=action_id).created_by
 
