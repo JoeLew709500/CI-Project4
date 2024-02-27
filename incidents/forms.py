@@ -1,5 +1,6 @@
-from .models import Incident, Action, INCIDENT_CATEGORY_CHOICES, ActionPhoto
 from django import forms
+from .models import Incident, Action, INCIDENT_CATEGORY_CHOICES, ActionPhoto
+
 
 INCIDENT_CATEGORY_CHOICES = ((0, 'All'),) + INCIDENT_CATEGORY_CHOICES
 
@@ -10,6 +11,9 @@ class IncidentForm(forms.ModelForm):
 
     """
     class Meta:
+        """
+        Meta class for IncidentForm
+        """
         model = Incident
         fields = ['location', 'incident_category','received_on', 'details','closed_on']
 
@@ -25,6 +29,9 @@ class ActionForm(forms.ModelForm):
     
     """
     class Meta:
+        """
+        Meta class for ActionForm
+        """
         model = Action
         fields = ['incident', 'action_code', 'details', 'completed_on']
 
@@ -39,6 +46,9 @@ class ActionFormNew(forms.ModelForm):
 
     """
     class Meta:
+        """
+        Meta class for ActionFormNew
+        """
         model = Action
         fields = ['action_code', 'details', 'completed_on']
 
@@ -49,7 +59,7 @@ class ActionFormNew(forms.ModelForm):
 class IncidentFormSearch(forms.Form):
     """
     
-    Form to seach for incident
+    Form to search for incident
 
     """
     incident_category = forms.ChoiceField(choices=INCIDENT_CATEGORY_CHOICES)
@@ -63,5 +73,8 @@ class PhotoForm(forms.ModelForm):
     
     """
     class Meta:
+        """
+        Meta class for PhotoForm
+        """
         model = ActionPhoto
         fields = ['photo']

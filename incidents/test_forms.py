@@ -25,7 +25,7 @@ class TestIncidentForm(TestCase):
         form = IncidentForm({
             'location': True,
             'incident_category': 'p',
-            'received_on': 'dasd',
+            'received_on': 'days',
         })
         self.assertFalse(form.is_valid(), msg=form.errors)
         self.assertEqual(form.errors['details'], ['This field is required.'])
@@ -34,7 +34,7 @@ class TestActionForm(TestCase):
     """
     Test Action Form
     """
-    def setUp(self):
+    def set_up(self):
         """
         Set up user and incident
         """
@@ -80,7 +80,7 @@ class TestActionForm(TestCase):
         form = ActionForm({
             'incident': 1,
             'action_code': 'q',
-            'completed_on': 'fsdfsf',
+            'completed_on': 'dates',
         })
         self.assertFalse(form.is_valid(), msg=form.errors)
         self.assertEqual(form.errors['details'], ['This field is required.'])
