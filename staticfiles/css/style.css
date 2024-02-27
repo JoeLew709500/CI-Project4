@@ -1,3 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-wrapper{
+    flex:1;
+    align-items: start;
+}
+
 .container-sub-heading {
     display: flex;
     justify-content: space-between;
